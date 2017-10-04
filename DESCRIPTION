@@ -1,0 +1,15 @@
+Package: arrow
+Version: 0.0.0.9000
+Title: What the Package Does (one line, title case)
+Description: What the package does (one paragraph).
+Authors@R: person("Jim", "Hester", email = "james.f.hester@gmail.com", role = c("aut", "cre"))
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+SystemRequirements: C++11
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp
+RoxygenNote: 6.0.1
