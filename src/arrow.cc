@@ -1,19 +1,31 @@
 #include <arrow/api.h>
+#include <arrow/buffer.h>
 #include "Rcpp.h"
 #include "arrow_types.h"
 
 using namespace arrow;
 using namespace Rcpp;
 
+class RBuffer : public Buffer {
+ public:
+  RBuffer(SEXP data) : Buffer(nullptr, 0) {
+    is_mutable_ = false;
+    data_ = reinterpret_cast<const uint8_t*>(INTEGER(data));
+    size_ = Rf_length(data) * sizeof(int);
+    capacity_ = size_;
+  }
+  ~RBuffer() {}
+};
+
 // [[Rcpp::export]]
-array_ptr array() {
-  Int32Builder builder;
-  builder.Append(1);
-  builder.Append(2);
-  builder.Append(3);
-  array_ptr array(new std::shared_ptr<arrow::Array>);
-  builder.Finish(&(*array));
-  return array;
+array_ptr array(IntegerVector input) {
+  auto buffer = std::make_shared<RBuffer>(input);
+  std::vector<std::shared_ptr<Buffer>> buffers = {nullptr, buffer};
+  auto data = std::make_shared<ArrayData>(int32(), input.length(),
+                                          std::move(buffers), 0, 0);
+  array_ptr result(new std::shared_ptr<Array>);
+  MakeArray(data, &(*result));
+  return result;
 }
 
 // [[Rcpp::export]]

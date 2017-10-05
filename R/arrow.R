@@ -2,8 +2,9 @@
 #' @importFrom Rcpp sourceCpp
 NULL
 
-arrow_array <- function() {
-  structure(list(ptr = array()), class = "arrow_array")
+#' @export
+arrow_array <- function(input) {
+  structure(list(ptr = array(input)), class = "arrow_array")
 }
 
 #' @export

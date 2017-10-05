@@ -35,10 +35,13 @@ make install
 
 ```{r example}
 library(arrow)
-x <- arrow_array()
 # Default print method calls the ToString method on the arrow array
-x
+arrow_array(1:5)
 
-# to_r converts the arrow arrow to an R vector
+arrow_array(5:10)
+
+
+# to_r converts the arrow array to an R vector
+x <- arrow_array(1:25)
 to_r(x)
 ```

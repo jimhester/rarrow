@@ -7,12 +7,13 @@
 using namespace Rcpp;
 
 // array
-array_ptr array();
-RcppExport SEXP _arrow_array() {
+array_ptr array(IntegerVector input);
+RcppExport SEXP _arrow_array(SEXP inputSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(array());
+    Rcpp::traits::input_parameter< IntegerVector >::type input(inputSEXP);
+    rcpp_result_gen = Rcpp::wrap(array(input));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -40,7 +41,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_arrow_array", (DL_FUNC) &_arrow_array, 0},
+    {"_arrow_array", (DL_FUNC) &_arrow_array, 1},
     {"_arrow_array_string", (DL_FUNC) &_arrow_array_string, 1},
     {"_arrow_as_r_int", (DL_FUNC) &_arrow_as_r_int, 1},
     {NULL, NULL, 0}
