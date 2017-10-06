@@ -20,12 +20,35 @@ class RBuffer : public Buffer {
   ~RBuffer() {}
 };
 
+std::shared_ptr<Buffer> init_null_bitmap(IntegerVector array) {
+  int64_t null_bytes = BitUtil::BytesForBits(array.size());
+
+  auto null_bitmap = std::make_shared<PoolBuffer>(default_memory_pool());
+  null_bitmap->Resize(null_bytes);
+
+  auto null_bitmap_data = null_bitmap->mutable_data();
+  memset(null_bitmap_data, 0, static_cast<size_t>(null_bytes));
+  return null_bitmap;
+}
+
+std::shared_ptr<Buffer> values_to_bitmap(IntegerVector array) {
+  auto bitmap = init_null_bitmap(array);
+  auto bitmap_data = bitmap->mutable_data();
+
+  for (int i = 0; i < array.size(); ++i) {
+    if (array.at(i) != NA_INTEGER) {
+      BitUtil::SetBit(bitmap_data, i);
+    }
+  }
+
+  return bitmap;
+}
 // [[Rcpp::export]]
 array_ptr array(IntegerVector input) {
   auto buffer = std::make_shared<RBuffer>(input);
 
   // The first buffer is the null bitmap, which we are ignoring for now
-  BufferVector buffers = {nullptr, buffer};
+  BufferVector buffers = {values_to_bitmap(input), buffer};
 
   auto data = std::make_shared<ArrayData>(int32(), input.length(),
                                           std::move(buffers), 0, 0);

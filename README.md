@@ -28,16 +28,12 @@ Example
 ``` r
 library(arrow)
 # Default print method calls the ToString method on the arrow array
-arrow_array(1:5)
-#> [1, 2, 3, 4, 5]
-
-arrow_array(5:10)
-#> [5, 6, 7, 8, 9, 10]
-
+arrow_array(c(1:5, NA, 6:10))
+#> [1, 2, 3, 4, 5, null, 6, 7, 8, 9, 10]
 
 # to_r converts the arrow array to an R vector
-x <- arrow_array(1:25)
+x <- arrow_array(c(1:5, NA, 6:25))
 to_r(x)
-#>  [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23
-#> [24] 24 25
+#>  [1]  1  2  3  4  5 NA  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22
+#> [24] 23 24 25
 ```

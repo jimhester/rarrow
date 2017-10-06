@@ -36,12 +36,9 @@ make install
 ```{r example}
 library(arrow)
 # Default print method calls the ToString method on the arrow array
-arrow_array(1:5)
-
-arrow_array(5:10)
-
+arrow_array(c(1:5, NA, 6:10))
 
 # to_r converts the arrow array to an R vector
-x <- arrow_array(1:25)
+x <- arrow_array(c(1:5, NA, 6:25))
 to_r(x)
 ```
