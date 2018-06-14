@@ -36,7 +36,6 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
   else
     curl -sfL "https://jeroen.github.io/autobrew/default" > autobrew
     source autobrew
-    rm "$BREWDIR"/lib/*.dynlib
   fi
 fi
 
