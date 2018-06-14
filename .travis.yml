@@ -17,7 +17,6 @@ matrix:
         pushd build
         cmake ..
         sudo make install
-        ldd /usr/local/lib/libarrow.so.10
         popd
         popd
     - os: osx
