@@ -53,7 +53,7 @@ array_ptr array(IntegerVector input) {
   auto data = std::make_shared<ArrayData>(int32(), input.length(),
                                           std::move(buffers), 0, 0);
   array_ptr result(new std::shared_ptr<Array>);
-  MakeArray(data, &(*result));
+  MakeArray(data);
   return result;
 }
 
