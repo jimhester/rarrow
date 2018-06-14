@@ -10,6 +10,16 @@ warnings_are_errors: false
 matrix:
   include:
     - os: linux
+      before_install: |-
+        git clone --depth 1 https://github.com/apache/arrow.git
+        pushd arrow/cpp
+        mkdir build
+        pushd build
+        cmake ..
+        sudo make install
+        ldd /usr/local/lib/libarrow.so.10
+        popd
+        popd
     - os: osx
       osx_image: xcode9.3
       brew_packages: apache-arrow
@@ -24,14 +34,3 @@ addons:
       - libboost-dev
       - libboost-filesystem-dev
       - libboost-system-dev
-
-before_install: |-
-  git clone --depth 1 https://github.com/apache/arrow.git
-  pushd arrow/cpp
-  mkdir build
-  pushd build
-  cmake ..
-  sudo make install
-  ldd /usr/local/lib/libarrow.so.10
-  popd
-  popd
