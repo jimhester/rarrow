@@ -32,7 +32,7 @@ before_install: |-
   pushd arrow/cpp
   mkdir build
   pushd build
-  cmake ..-DCMAKE_BUILD_TYPE=Release -DARROW_BOOST_USE_SHARED:BOOL=Off
+  cmake .. -DCMAKE_BUILD_TYPE=Release -DARROW_BOOST_USE_SHARED:BOOL=Off
   sudo make install
   popd
   popd
