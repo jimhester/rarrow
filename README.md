@@ -11,6 +11,8 @@ Installation
 Arrow
 -----
 
+[![Travis build status](https://travis-ci.org/jimhester/rarrow.svg?branch=master)](https://travis-ci.org/jimhester/rarrow)
+
 First install a release build of the C++ bindings to arrow.
 
 ``` shell
