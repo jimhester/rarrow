@@ -32,7 +32,8 @@ before_install: |-
   pushd arrow/cpp
   mkdir build
   pushd build
-  cmake .. -DCMAKE_BUILD_TYPE=Release -DARROW_BOOST_USE_SHARED:BOOL=Off
+  cmake ..
   sudo make install
+  ldd /usr/local/lib/libarrow.so.10
   popd
   popd

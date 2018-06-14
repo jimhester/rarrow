@@ -12,7 +12,7 @@ PKG_RPM_NAME="arrow"
 PKG_CSW_NAME="arrow"
 PKG_BREW_NAME="apache-arrow"
 PKG_TEST_HEADER="<arrow/api.h>"
-PKG_LIBS="${PKG_LIBS:-larrow}"
+PKG_LIBS="-larrow"
 
 # Use pkg-config if available
 pkg-config --version >/dev/null 2>&1
