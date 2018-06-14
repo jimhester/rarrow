@@ -33,6 +33,6 @@ before_install: |-
   mkdir build
   pushd build
   cmake ..
-  make install
+  sudo make install
   popd
   popd
