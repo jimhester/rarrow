@@ -7,9 +7,9 @@
 
 # Library settings
 PKG_CONFIG_NAME="arrow"
-PKG_DEB_NAME="apache-arrow"
-PKG_RPM_NAME="apache-arrow"
-PKG_CSW_NAME="apache-arrow"
+PKG_DEB_NAME="arrow"
+PKG_RPM_NAME="arrow"
+PKG_CSW_NAME="arrow"
 PKG_BREW_NAME="apache-arrow"
 PKG_TEST_HEADER="<arrow/api.h>"
 PKG_LIBS="${PKG_LIBS:-larrow}"
@@ -46,13 +46,12 @@ echo "PKG_LIBS=$PKG_LIBS"
 
 # Find compiler
 CXXCPP=$("${R_HOME}"/bin/R CMD config CXXCPP)
-CXXFLAGS=$("${R_HOME}"/bin/R CMD config CXXFLAGS)
+CXX11FLAGS=$("${R_HOME}"/bin/R CMD config CXX11FLAGS)
+CXX11STD=$("${R_HOME}"/bin/R CMD config CXX11STD)
 CPPFLAGS=$("${R_HOME}"/bin/R CMD config CPPFLAGS)
 
-
 # Test configuration
-echo "#include $PKG_TEST_HEADER" | ${CXXCPP} ${CPPFLAGS} ${PKG_CFLAGS} ${CXXFLAGS} -xc++ - >/dev/null 2>&1
-
+echo "#include $PKG_TEST_HEADER" | ${CXXCPP} ${CPPFLAGS} ${PKG_CFLAGS} ${CXX11FLAGS} ${CXX11STD} -xc++ - >/dev/null 2>&1
 
 # Customize the error
 if [ $? -ne 0 ]; then
