@@ -1,0 +1,26 @@
+# r for travis: see documentation at https://docs.travis-ci.com/user/languages/r
+#
+
+language: R
+sudo: true
+cache: packages
+
+addons:
+  apt:
+    #sources:
+      #- george-edison55/cmake-3.x
+    packages:
+      - cmake
+      - libboost-dev
+      - libboost-filesystem-dev
+      - libboost-system-dev
+
+before_install: -|
+  git clone --depth 1 https://github.com/apache/arrow.git
+  pushd arrow/cpp
+  mkdir build
+  pushd build
+  cmake ..
+  make install
+  popd
+  popd
