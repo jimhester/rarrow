@@ -12,6 +12,7 @@ Arrow
 -----
 
 [![Travis build status](https://travis-ci.org/jimhester/rarrow.svg?branch=master)](https://travis-ci.org/jimhester/rarrow)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/jimhester/rarrow?branch=master&svg=true)](https://ci.appveyor.com/project/jimhester/rarrow)
 
 First install a release build of the C++ bindings to arrow.
 
