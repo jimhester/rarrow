@@ -52,14 +52,14 @@ array_ptr array(IntegerVector input) {
 
   auto data = std::make_shared<ArrayData>(int32(), input.length(),
                                           std::move(buffers), 0, 0);
-  array_ptr result(new std::shared_ptr<Array>);
-  MakeArray(data);
-  return result;
+  auto array = MakeArray(data);
+  return array_ptr(new std::shared_ptr<Array>(array.get()));
 }
 
 // [[Rcpp::export]]
 CharacterVector array_string(array_ptr const& array) {
-  return (*array)->ToString();
+  std::shared_ptr<arrow::Array> p = *array;
+  return p->ToString();
 }
 
 // [[Rcpp::export]]
