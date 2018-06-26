@@ -1,3 +1,5 @@
 ^README\.Rmd$
 ^\.travis\.yml$
 ^arrow$
+^arrow\.Rproj$
+^\.Rproj\.user$
