@@ -10,8 +10,11 @@ init:
 install:
   ps: Bootstrap
 
+platform: x64
+
 environment:
   R_ARCH: x64
+  R_CHECK_ARGS: --no-manual --as-cran --no-multiarch
 
 cache:
   - C:\RLibrary
