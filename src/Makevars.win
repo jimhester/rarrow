@@ -1,0 +1,16 @@
+VERSION=0.9.0
+RWINLIB = ../windows/arrow-${VERSION}
+
+PKG_CPPFLAGS = -DARROW_STATIC -I${RWINLIB}/include
+
+PKG_LIBS = -L${RWINLIB}/lib${R_ARCH} -larrow
+
+CXX_STD=CXX11
+
+all: clean winlibs
+
+clean:
+	rm -f $(SHLIB) $(OBJECTS)
+
+winlibs:
+	"${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" "../tools/winlibs.R" ${VERSION}
