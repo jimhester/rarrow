@@ -52,8 +52,7 @@ array_ptr array(IntegerVector input) {
 
   auto data = std::make_shared<ArrayData>(int32(), input.length(),
                                           std::move(buffers), 0, 0);
-  auto array = MakeArray(data);
-  return array_ptr(new std::shared_ptr<Array>(array.get()));
+  return array_ptr(new std::shared_ptr<Array>(MakeArray(data)));
 }
 
 // [[Rcpp::export]]
